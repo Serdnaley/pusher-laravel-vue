@@ -1,0 +1,10 @@
+@import 'var';
+@import "~element-ui/packages/theme-chalk/src/index";
+@import '~element-ui/lib/theme-chalk/display.css';
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
+body {
+    margin: 0;
+    font-family: Roboto, sans-serif;
+    background: $--background-color-base;
+}
