@@ -12,6 +12,15 @@ $--color-warning: #E6A23C;
 $--color-danger: #F56C6C;
 $--color-info: #909399;
 
+$--color-text-primary: #F5F5F5 !default;
+$--color-text-regular: #EBEEF5 !default;
+$--color-text-secondary: #747485 !default;
+$--color-text-placeholder: #747485 !default;
+$--border-color-base: #C0C4CC !default;
+$--border-color-light: #909399 !default;
+$--border-color-lighter: #606266 !default;
+$--border-color-extra-light: #303133 !default;
+
 $--background-color-base: #242424;
 
 @import '~elementui-dark/element-variables';

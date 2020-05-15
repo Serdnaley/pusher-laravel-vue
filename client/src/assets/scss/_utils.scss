@@ -1,0 +1,94 @@
+@import 'var';
+
+$displays: none, inline, inline-block, block, table, table-row, table-cell, flex, inline-flex;
+
+@each $value in $displays {
+    .d-#{$value} { display: $value !important; }
+}
+
+@each $index,$val in (
+    'primary' : $--color-primary,
+    'white' : $--color-white,
+    'black' : $--color-black,
+    'primary-light-1' : $--color-primary-light-1,
+    'primary-light-2' : $--color-primary-light-2,
+    'primary-light-3' : $--color-primary-light-3,
+    'primary-light-4' : $--color-primary-light-4,
+    'primary-light-5' : $--color-primary-light-5,
+    'primary-light-6' : $--color-primary-light-6,
+    'primary-light-7' : $--color-primary-light-7,
+    'primary-light-8' : $--color-primary-light-8,
+    'primary-light-9' : $--color-primary-light-9,
+    'success' : $--color-success,
+    'warning' : $--color-warning,
+    'danger' : $--color-danger,
+    'info' : $--color-info,
+    'success-light' : $--color-success-light,
+    'warning-light' : $--color-warning-light,
+    'danger-light' : $--color-danger-light,
+    'info-light' : $--color-info-light,
+    'success-lighter' : $--color-success-lighter,
+    'warning-lighter' : $--color-warning-lighter,
+    'danger-lighter' : $--color-danger-lighter,
+    'info-lighter' : $--color-info-lighter,
+    'text-primary' : $--color-text-primary,
+    'text-regular' : $--color-text-regular,
+    'text-secondary' : $--color-text-secondary,
+    'text-placeholder' : $--color-text-placeholder,
+) {
+    .bg-#{$index} {
+        background: $val;
+    }
+    .color-#{$index} {
+        color: $val;
+    }
+}
+
+@each $index,$val in (
+    'extra-large' : $--font-size-extra-large,
+    'large' : $--font-size-large,
+    'medium' : $--font-size-medium,
+    'base' : $--font-size-base,
+    'small' : $--font-size-small,
+    'extra-small' : $--font-size-extra-small,
+) {
+    .fz-#{$index} {
+        background: $val;
+    }
+}
+
+.fw-primary {
+    font-weight: $--font-weight-primary
+}
+
+.fw-secondary {
+    font-weight: $--font-weight-secondary
+}
+
+.lh-primary {
+    line-height: $--font-line-height-primary
+}
+
+.lh-secondary {
+    line-height: $--font-line-height-secondary
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
