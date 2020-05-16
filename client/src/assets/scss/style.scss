@@ -9,6 +9,11 @@
 body {
     margin: 0;
     font-family: Roboto, sans-serif;
-    background: $--background-color-base;
     overflow: hidden;
+    background: $--background-color-base;
+    color: $--color-text-regular;
+}
+
+.form-item {
+    margin-top: 15px;
 }

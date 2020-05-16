@@ -1,4 +1,5 @@
 {
+  "declarationDir": "dist",
   "compilerOptions": {
     "noImplicitAny": false,
     "target": "esnext",

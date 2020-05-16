@@ -12,7 +12,7 @@ const routes: Array<RouteConfig> = [
     {
         path: '/direct',
         name: 'Direct',
-        component: () => import('@/views/direct/index.vue'),
+        component: () => import('@/views/Direct.vue'),
     },
 ]
 

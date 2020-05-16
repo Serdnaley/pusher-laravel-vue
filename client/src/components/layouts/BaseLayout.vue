@@ -4,18 +4,16 @@
             <slot name="sidebar"/>
         </el-col>
         <el-col :md="18" class="base-layout__content">
-            <slot name="content"/>
+            <slot/>
         </el-col>
     </el-row>
 </template>
 
 <script lang="ts">
-    import { Component, Prop, Vue } from 'vue-property-decorator';
+    import { Component, Vue } from 'vue-property-decorator';
 
     @Component
-    export default class Direct extends Vue {
-        @Prop() private msg!: string;
-    }
+    export default class BaseLayout extends Vue {}
 </script>
 
 <style lang="scss">
@@ -24,13 +22,14 @@
         overflow: hidden;
 
         &__sidebar {
-            padding: 15px;
             height: 100%;
+            padding: 15px;
             background: $--color-black;
             overflow-y: auto;
         }
 
         &__content {
+            height: 100%;
             padding: 15px;
             overflow-y: auto;
         }
