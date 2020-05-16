@@ -8,12 +8,8 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    public function index()
-    {
-        return view('comments');
-    }
 
-    public function fetchComments()
+    public function index()
     {
         $comments = Comment::all();
 
@@ -26,6 +22,8 @@ class CommentController extends Controller
 
         event(new CommentEvent($comment));
 
-        return response()->json('ok');
+        return response()->json([
+            'status' => 'ok'
+        ]);
     }
 }

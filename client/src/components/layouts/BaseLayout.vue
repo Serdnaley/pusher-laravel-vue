@@ -1,6 +1,6 @@
 <template>
     <el-row class="base-layout">
-        <el-col :md="6" class="base-layout__sidebar">
+        <el-col :md="6" class="base-layout__sidebar hidden-sm-and-down">
             <slot name="sidebar"/>
         </el-col>
         <el-col :md="18" class="base-layout__content">

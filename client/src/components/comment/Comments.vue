@@ -30,7 +30,7 @@
             const channel = pusher.subscribe('comment-channel')
 
             channel.bind('new-comment', (data) => {
-                this.$store.commit('ADD_COMMENT', data.comment)
+                this.$store.commit('comments/ADD_COMMENT', data.comment)
             })
         }
     }

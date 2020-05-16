@@ -1,7 +1,7 @@
 <template>
     <div id="commentForm" class="box has-shadow has-background-white">
 
-        <form @keyup.enter="submit()">
+        <form @submit.prevent="submit()">
             <div class="field has-margin-top">
 
                 <div class="form-item">
@@ -62,7 +62,7 @@
 
             await this.$store
                 .dispatch('comments/addOne', this.comment)
-                .then();
+                .catch((err) => console.log(err.response));
 
             this.loading = false;
         }

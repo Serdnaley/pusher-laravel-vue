@@ -20,9 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/', 'CommentController@index');
 
-Route::middleware('auth:api')->prefix('api')->group(function () {
-
-    Route::get('/comments', 'CommentController@fetchComments');
-    Route::post('/comments', 'CommentController@store');
-
-});
+Route::get('/comments', 'CommentController@index');
+Route::post('/comment', 'CommentController@store');

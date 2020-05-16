@@ -9,7 +9,6 @@ export class CommentModel {
     public updated_at: Moment | null = null;
 
     constructor(data = {}) {
-
         for (const key in data)
             this[key] = data[key];
 

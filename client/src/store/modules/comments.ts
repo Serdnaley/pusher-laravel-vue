@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {CommentModel} from "@/models/comment";
 
 export default {
     namespaced: true,
@@ -13,37 +14,31 @@ export default {
 
     mutations: {
 
-        GET_COMMENTS(state, comments) {
-            state.all = comments
+        GET_COMMENTS(state, comments: []) {
+            state.all = comments.map(item => new CommentModel(item));
         },
 
-        ADD_COMMENT(state, comment) {
-            state.all = [...state.all, comment]
+        ADD_COMMENT(state, item) {
+            state.all = [...state.all, new CommentModel(item)]
         },
 
     },
 
     actions: {
 
-        addOne({commit}, comment) {
-            return new Promise((resolve, reject) => {
-                axios
-                    .post(`/comments`, comment)
-                    .then(response => {
-                        resolve(response)
-                    }).catch(err => reject(err))
-            })
+        async addOne({commit}, comment) {
+            return await axios
+                .post(`/comment`, comment)
         },
 
-        getAll({commit}) {
-            axios
+        async getAll({commit}) {
+            await axios
                 .get('/comments')
                 .then(res => {
                     {
                         commit('GET_COMMENTS', res.data)
                     }
                 })
-                .catch(err => console.log(err))
         },
 
     },

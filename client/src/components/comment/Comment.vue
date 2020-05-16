@@ -1,11 +1,16 @@
 <template>
-    <li class="comment-wrapper animate slideInLeft ">
+    <li class="comment-wrapper" v-if="comment">
         <div class="profile">
             <img :src="avatar" alt="">
         </div>
         <div class="msg has-shadow">
             <div class="msg-body">
-                <p class="name">{{comment.author}} <span class="date">{{comment.created_at.format('MMMM Do YYYY')}}</span></p>
+                <p class="name">
+                    {{comment.author}}
+                    <span class="date" v-if="comment.created_at">
+                        {{comment.created_at.format('MMMM Do YYYY')}}
+                    </span>
+                </p>
                 <p class="content">{{comment.content}}</p>
             </div>
         </div>
@@ -18,9 +23,10 @@
 
     @Component
     export default class Comment extends Vue {
-        @Prop() comment = new CommentModel();
+        @Prop() comment?: CommentModel;
+
         get avatar() {
-            return `https://api.adorable.io/avatars/48/${this.comment.author}@adorable.io.png`
+            return `https://api.adorable.io/avatars/48/${this.comment?.author}@adorable.io.png`
         }
     }
 </script>
