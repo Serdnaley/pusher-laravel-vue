@@ -1,7 +1,11 @@
 <IfModule mod_rewrite.c>
+
 RewriteEngine on
-RewriteCond %{REQUEST_URI} !^api
-RewriteRule ^(.*)$ client/$1 [L]
+
 RewriteCond %{REQUEST_URI} ^api
-RewriteRule ^(.*)$ server/$1 [L]
+RewriteRule ^(.*)$ server/public/$1 [L]
+
+RewriteCond %{REQUEST_URI} !^api
+RewriteRule ^(.*)$ client/dist/$1 [L]
+
 </IfModule>
