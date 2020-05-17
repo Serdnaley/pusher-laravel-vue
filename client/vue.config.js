@@ -7,5 +7,10 @@ module.exports = {
                 prependData: `@import "~@/assets/scss/_var.scss";`,
             },
         }
+    },
+    pwa: {
+        workboxOptions: {
+            exclude: /\.htaccess$/
+        }
     }
 };
