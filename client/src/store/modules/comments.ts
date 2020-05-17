@@ -15,6 +15,7 @@ export default {
     mutations: {
 
         GET_COMMENTS(state, comments: []) {
+            if (typeof comments !== 'object') return;
             state.all = comments.map(item => new CommentModel(item));
         },
 
