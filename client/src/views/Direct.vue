@@ -21,10 +21,10 @@
 
             <comments
                 ref="list"
+                @new-comment="scrollBottom()"
             />
-            <new-comment
-                @submitted="scrollBottom()"
-            />
+
+            <new-comment/>
         </div>
 
     </base-layout>
@@ -48,9 +48,6 @@
 
         created() {
             this.authorize();
-            setTimeout(() => {
-                this.scrollBottom();
-            }, 100);
         }
 
         async authorize() {
@@ -69,8 +66,10 @@
         }
 
         scrollBottom() {
-            const list = this.$refs.list as Vue;
-            list.$el.scrollTop = 9999999999999999999999;
+            this.$nextTick(() => {
+                const list = this.$refs.list as Vue;
+                list.$el.scrollTop = 9999999999999999999999;
+            })
         }
     }
 </script>
@@ -78,9 +77,11 @@
 <style lang="scss">
     .direct {
         height: 100%;
+        display: flex;
+        flex-direction: column;
 
         .comment-list {
-            height: calc(100% - 150px);
+            height: 100%;
             overflow-y: auto;
         }
     }

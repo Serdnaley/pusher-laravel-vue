@@ -1,5 +1,5 @@
 <template>
-    <div id="commentForm" class="box has-shadow has-background-white">
+    <div class="new-comment">
 
         <form
             @submit.prevent="submit()"
@@ -30,7 +30,6 @@
                 </div>
             </el-row>
         </form>
-        <br>
     </div>
 </template>
 

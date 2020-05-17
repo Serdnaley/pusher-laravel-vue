@@ -10,7 +10,8 @@ module.exports = {
     },
     pwa: {
         workboxOptions: {
-            exclude: /\.htaccess$/
+            exclude: /\.htaccess$/,
+            skipWaiting: true
         }
     }
 };

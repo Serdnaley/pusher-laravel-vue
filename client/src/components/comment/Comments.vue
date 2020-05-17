@@ -24,13 +24,16 @@
     export default class Comments extends Vue {
         private channel;
 
-        mounted() {
-            this.$store.dispatch('comments/getAll')
+        async mounted() {
+            await this.$store.dispatch('comments/getAll');
+
+            this.$emit('new-comment');
 
             this.channel = pusher.subscribe('comment-channel')
 
             this.channel.bind('new-comment', (data) => {
                 this.$store.commit('comments/ADD_COMMENT', data.comment)
+                this.$emit('new-comment');
             });
         }
 

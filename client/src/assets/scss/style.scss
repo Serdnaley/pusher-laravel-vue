@@ -23,3 +23,16 @@ body {
         border-color: $--color-danger;
     }
 }
+
+.service-worker-message {
+    max-width: calc(100vw - 30px);
+    box-sizing: border-box;
+    padding: 0;
+    margin: 15px;
+
+    .el-message-box {
+        &__btns {
+            display: none;
+        }
+    }
+}
