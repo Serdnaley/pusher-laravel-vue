@@ -1,14 +1,16 @@
 <template>
     <li class="comment-wrapper" v-if="comment">
         <div class="profile">
-            <img :src="avatar" alt="">
+            <el-avatar
+                :src="comment.avatar"
+            />
         </div>
         <div class="msg has-shadow">
             <div class="msg-body">
                 <p class="name">
                     {{comment.author}}
                     <span class="date" v-if="comment.created_at">
-                        {{comment.created_at.format('MMMM Do YYYY')}}
+                        {{comment.created_at | formatDateAgo}}
                     </span>
                 </p>
                 <p class="content">{{comment.content}}</p>
@@ -20,14 +22,15 @@
 <script lang="ts">
     import {Component, Prop, Vue} from 'vue-property-decorator';
     import {CommentModel} from "@/models/comment";
+    import {formatDateAgo} from "@/utils";
 
-    @Component
+    @Component({
+        filters: {
+            formatDateAgo,
+        },
+    })
     export default class Comment extends Vue {
         @Prop() comment?: CommentModel;
-
-        get avatar() {
-            return `https://api.adorable.io/avatars/48/${this.comment?.author}@adorable.io.png`
-        }
     }
 </script>
 
@@ -40,22 +43,17 @@
         padding: .4em;
 
         .profile {
-            width: 80px;
+            width: 60px;
             float: left;
         }
 
-        .msg-body {
-            padding: .8em;
-            color: #666;
-            line-height: 1.5;
-        }
-
         .msg {
-            width: 86%;
+            width: calc(100% - 60px);
             float: left;
             background-color: #fff;
             border-radius: 0 5px 5px 5px;
             position: relative;
+
             &::after {
                 content: " ";
                 position: absolute;
@@ -63,6 +61,16 @@
                 top: 0;
                 border: 14px solid transparent;
                 border-top-color: #fff;
+            }
+
+            &-body {
+                padding: .8em;
+                color: #666;
+                line-height: 1.5;
+            }
+
+            .content {
+                white-space: pre-wrap;
             }
         }
 

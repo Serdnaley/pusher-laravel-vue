@@ -17,3 +17,9 @@ body {
 .form-item {
     margin-top: 15px;
 }
+
+.el-input, .el-textarea {
+    &.invalid &__inner {
+        border-color: $--color-danger;
+    }
+}

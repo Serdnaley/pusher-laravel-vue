@@ -1,9 +1,7 @@
 <template>
-    <div class="container">
-        <ul class="comment-list">
-            <Comment :key="comment.id" v-for="comment in comments" :comment="comment"></Comment>
-        </ul>
-    </div>
+    <ul class="comment-list">
+        <Comment :key="comment.id" v-for="comment in comments" :comment="comment"></Comment>
+    </ul>
 </template>
 
 <script lang="ts">
@@ -24,14 +22,20 @@
         }
     })
     export default class Comments extends Vue {
+        private channel;
+
         mounted() {
             this.$store.dispatch('comments/getAll')
 
-            const channel = pusher.subscribe('comment-channel')
+            this.channel = pusher.subscribe('comment-channel')
 
-            channel.bind('new-comment', (data) => {
+            this.channel.bind('new-comment', (data) => {
                 this.$store.commit('comments/ADD_COMMENT', data.comment)
-            })
+            });
+        }
+
+        destroyed() {
+            this.channel.unsubscribe();
         }
     }
 </script>

@@ -1,44 +1,34 @@
 <template>
     <div id="commentForm" class="box has-shadow has-background-white">
 
-        <form @submit.prevent="submit()">
-            <div class="field has-margin-top">
-
-                <div class="form-item">
-                    <label class="label">Your name</label>
-                    <div class="control">
-                        <el-input
-                            type="text"
-                            placeholder="Your name"
-                            class="input is-medium"
-                            v-model="comment.author"
-                        />
-                    </div>
-                </div>
-                <div class="form-item">
-                    <label class="label">Your comment</label>
-                    <div class="control">
-                        <el-input
-                            type="textarea"
-                            style="height:100px;"
-                            name="comment"
-                            class="input is-medium" autocomplete="true" v-model="comment.content"
-                            placeholder="lorem ipsum"
-                        />
-                    </div>
-
-                </div>
-                <div class="form-item">
+        <form
+            @submit.prevent="submit()"
+            @keyup.ctrl.enter="submit()"
+            @keyup.meta.enter="submit()"
+        >
+            <el-row
+                type="flex"
+                align="top"
+            >
+                <el-input
+                    type="textarea"
+                    name="comment"
+                    v-model="comment.content"
+                    placeholder="Type your message..."
+                    autosize
+                    :class="is_valid || !dirty ? '' : 'invalid'"
+                />
+                <div style="margin-left: 15px;">
                     <el-button
                         type="primary"
-                        :disabled="!is_valid"
+                        size="medium"
+                        icon="el-icon-check"
                         :loading="loading"
                         @click.prevent="submit()"
-                    >
-                        Submit
-                    </el-button>
+                        autofocus
+                    />
                 </div>
-            </div>
+            </el-row>
         </form>
         <br>
     </div>
@@ -51,20 +41,36 @@
     @Component
     export default class NewComment extends Vue {
         private loading = false;
+        private dirty = false;
         private comment = new CommentModel();
 
         private get is_valid() {
-            return this.comment.content !== '' && this.comment.author !== ''
+            return this.comment.content.trim().length;
         }
 
         async submit() {
+
+            if (!this.is_valid) {
+                this.dirty = true;
+                return;
+            }
+
             this.loading = true;
+
+            this.comment.author = localStorage.getItem('user') || '';
+            this.comment.content = this.comment.content.trim();
 
             await this.$store
                 .dispatch('comments/addOne', this.comment)
+                .then(() => {
+                    this.comment.content = '';
+                })
                 .catch((err) => console.log(err.response));
 
+            this.$emit('submitted');
+
             this.loading = false;
+            this.dirty = false;
         }
     }
 </script>

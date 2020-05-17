@@ -5,6 +5,7 @@ export class CommentModel {
     public id: number | null = null;
     public content = '';
     public author = '';
+    public avatar = '';
     public created_at: Moment | null = null;
     public updated_at: Moment | null = null;
 
@@ -14,5 +15,7 @@ export class CommentModel {
 
         if (this.created_at) this.created_at = moment(this.created_at);
         if (this.updated_at) this.updated_at = moment(this.updated_at);
+
+        this.avatar = `https://api.adorable.io/avatars/48/${this.author}@adorable.io.png`;
     }
 }
