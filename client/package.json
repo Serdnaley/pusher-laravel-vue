@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "watch": "vue-cli-service build --watch",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
@@ -66,7 +67,9 @@
     },
     "rules": {
       "camelcase": "off",
-      "@typescript-eslint/camelcase": ["off"]
+      "@typescript-eslint/camelcase": [
+        "off"
+      ]
     },
     "globals": {
       "console": "readonly",

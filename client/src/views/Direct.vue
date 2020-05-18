@@ -5,18 +5,24 @@
         </template>
 
         <div class="direct" ref="direct">
+
             <el-row
                 type="flex"
                 justify="space-between"
             >
-                <h2 style="margin: 0;">You are logged in as {{user}}</h2>
+                <h2 style="margin: 0;">{{user}}</h2>
 
-                <el-button
-                    size="mini"
-                    @click.prevent="logout()"
-                >
-                    Logout
-                </el-button>
+                <div>
+                    <el-button
+                        plain
+                        type="info"
+                        size="mini"
+                        @click.prevent="logout()"
+                    >
+                        Logout
+                    </el-button>
+                    <prompt-install/>
+                </div>
             </el-row>
 
             <comments
@@ -35,9 +41,11 @@
     import BaseLayout from "@/components/layouts/BaseLayout.vue";
     import Comments from "@/components/comment/Comments.vue";
     import NewComment from "@/components/comment/NewComment.vue";
+    import PromptInstall from "@/components/PromptInstall.vue";
 
     @Component({
         components: {
+            PromptInstall,
             NewComment,
             Comments,
             BaseLayout,
