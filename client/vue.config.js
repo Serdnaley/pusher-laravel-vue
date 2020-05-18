@@ -9,8 +9,8 @@ module.exports = {
         }
     },
     pwa: {
+        swSrc: 'src/plugins/sw.js',
         workboxOptions: {
-            swSrc: 'src/plugins/sw.js',
             exclude: /\.htaccess$/,
             skipWaiting: true
         }
